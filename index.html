@@ -3,83 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ICT WORLD</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <meta name="description" content="ICT WORLD offers software development, networking, server solutions, and other IT services to enhance your business.">
+    <meta name="keywords" content="ICT, Software Development, Networking, Server Solutions, Web Development, Online Marketing, Technology">
+    <meta name="author" content="Your Company Name">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <title>ICT WORLD - IT Solutions</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+        header h1 {
+            margin: 0;
+        }
+
+        /* Typing Animation */
+        .typing {
+            font-size: 28px;
+            font-weight: bold;
+            display: inline-block;
+            width: 0;
+            white-space: nowrap;
+            border-right: 2px solid #fff;
+            overflow: hidden;
+            animation: typing 4s steps(40) 1s infinite, blinkCaret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blinkCaret {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background-color: #218838;
+        }
+
+        /* Smooth Transition for Sections */
+        section {
+            padding: 40px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        nav {
+            text-align: center;
+            background-color: #444;
+            padding: 10px;
+            animation: fadeIn 2s forwards;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .cta-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #218838;
+        }
+
+        .service-items, .portfolio-items, .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .service-item, .portfolio-item, .team-member {
+            background-color: #f4f4f4;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .service-item:hover, .portfolio-item:hover, .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-item i {
+            font-size: 40px;
+            color: #28a745;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .service-items, .portfolio-items, .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">ICT WORLD</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Innovating Tomorrow with Technology Today</h1>
-            <p>Providing IT Solutions, Software Development, Gaming & Networking Services</p>
-            <a href="#contact" class="cta-btn">Get in Touch</a>
-        </div>
-    </section>
+    <header>
+        <h1>Welcome to ICT WORLD</h1>
+        <p class="typing" id="motto"></p>
+        <button class="lang-toggle" onclick="toggleLanguage()">বাংলা</button>
+    </header>
+
+    <nav>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
     <!-- Services Section -->
     <section id="services" class="services">
-        <h2 data-aos="fade-up">Our Services</h2>
+        <h2>Our Services</h2>
         <div class="service-items">
-            <div class="service-item" data-aos="fade-up">
+            <div class="service-item">
+                <i class="fas fa-laptop-code"></i>
                 <h3>Software Development</h3>
                 <p>Custom software and game development services.</p>
             </div>
-            <div class="service-item" data-aos="fade-up">
+            <div class="service-item">
+                <i class="fas fa-network-wired"></i>
                 <h3>Networking & Server Solutions</h3>
                 <p>Efficient network setups, server management, and security services.</p>
             </div>
-            <div class="service-item" data-aos="fade-up">
+            <div class="service-item">
+                <i class="fas fa-desktop"></i>
                 <h3>Web Solutions</h3>
                 <p>Website design, development, and maintenance.</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2>About ICT WORLD</h2>
-        <p>ICT WORLD is a leading provider of innovative software, gaming, and IT networking solutions. Our goal is to provide high-quality, custom solutions to our clients while ensuring excellent customer satisfaction.</p>
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="portfolio-items">
+            <div class="portfolio-item">
+                <img src="project1.jpg" alt="Project 1">
+                <h3>Project 1</h3>
+                <p>Short description of the project.</p>
+            </div>
+            <div class="portfolio-item">
+                <img src="project2.jpg" alt="Project 2">
+                <h3>Project 2</h3>
+                <p>Short description of the project.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team">
+        <h2>Our Team</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="team1.jpg" alt="Team Member 1">
+                <h3>John Doe</h3>
+                <p>CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="team2.jpg" alt="Team Member 2">
+                <h3>Jane Smith</h3>
+                <p>Lead Developer</p>
+            </div>
+        </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact">
         <h2>Contact Us</h2>
-        <form>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <textarea placeholder="Message" required></textarea>
+        <form action="https://formspree.io/f/mwkaybpg" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" required></textarea>
             <button type="submit" class="cta-btn">Send Message</button>
         </form>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>© 2025 ICT WORLD. All rights reserved.</p>
+        <p>&copy; 2025 ICT WORLD. All rights reserved.</p>
     </footer>
 
     <script>
-        AOS.init({
-            duration: 1200,
-        });
+        // Typing Animation Content Toggle for Bangla and English
+        const englishContent = "Your one-stop IT Solutions provider for Software, Game Development, Networking, Web, and Marketing Services.";
+        const banglaContent = "আপনার জন্য সফটওয়্যার, নেটওয়ার্কিং, ওয়েব এবং মার্কেটিং সেবা প্রদানকারী একমাত্র প্রতিষ্ঠান।";
 
-        gsap.from(".hero h1", { opacity: 0, y: -50, duration: 1 });
-        gsap.from(".hero p", { opacity: 0, y: -50, duration: 1, delay: 0.5 });
+        let isBangla = false;
+
+        document.getElementById('motto').textContent = englishContent;
+
+        function toggleLanguage() {
+            if (isBangla) {
+                document.getElementById('motto').textContent = englishContent;
+                document.querySelector('.lang-toggle').textContent = 'বাংলা';
+            } else {
+                document.getElementById('motto').textContent = banglaContent;
+                document.querySelector('.lang-toggle').textContent = 'English';
+            }
+            isBangla = !isBangla;
+        }
+    </script>
+
+    <!-- AOS (Animate On Scroll) Library -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 </html>
