@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ICT WORLD</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">ICT WORLD</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Innovating Tomorrow with Technology Today</h1>
+            <p>Providing IT Solutions, Software Development, Gaming & Networking Services</p>
+            <a href="#contact" class="cta-btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 data-aos="fade-up">Our Services</h2>
+        <div class="service-items">
+            <div class="service-item" data-aos="fade-up">
+                <h3>Software Development</h3>
+                <p>Custom software and game development services.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up">
+                <h3>Networking & Server Solutions</h3>
+                <p>Efficient network setups, server management, and security services.</p>
+            </div>
+            <div class="service-item" data-aos="fade-up">
+                <h3>Web Solutions</h3>
+                <p>Website design, development, and maintenance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About ICT WORLD</h2>
+        <p>ICT WORLD is a leading provider of innovative software, gaming, and IT networking solutions. Our goal is to provide high-quality, custom solutions to our clients while ensuring excellent customer satisfaction.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit" class="cta-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ICT WORLD. All rights reserved.</p>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 1200,
+        });
+
+        gsap.from(".hero h1", { opacity: 0, y: -50, duration: 1 });
+        gsap.from(".hero p", { opacity: 0, y: -50, duration: 1, delay: 0.5 });
+    </script>
+</body>
+</html>
