@@ -164,6 +164,103 @@
     transition: opacity 1s ease-in-out;
 }
 
+.hidden {
+    display: none;
+}
+/* General styling */
+.services {
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.service-item {
+    padding: 15px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: bold;
+    text-align: center;
+    width: 200px;
+}
+
+.service-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Different colors & styles for each service */
+.software {
+    background: #3498db; /* Blue */
+    border-bottom: 5px solid #2980b9;
+}
+
+.networking {
+    background: #2ecc71; /* Green */
+    border-bottom: 5px solid #27ae60;
+}
+
+.web {
+    background: #f39c12; /* Orange */
+    border-bottom: 5px solid #e67e22;
+}
+
+.travel {
+    background: #e74c3c; /* Red */
+    border-bottom: 5px solid #c0392b;
+}
+
+/* Service details styling */
+.hidden {
+    display: none;
+}
+
+#service-details {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Different background colors for service details */
+.software-details {
+    background: #3498db;
+}
+
+.networking-details {
+    background: #2ecc71;
+}
+
+.web-details {
+    background: #f39c12;
+}
+
+.travel-details {
+    background: #e74c3c;
+}
+
+
+
 
     </style>
 </head>
@@ -227,12 +324,27 @@
     <section class="services">
         <h2>Our Services</h2>
         <ul>
-            <li><i class="fas fa-laptop-code"></i> Software & Game Development</li>
-            <li><i class="fas fa-network-wired"></i> Networking Services & Solutions</li>
-            <li><i class="fas fa-globe"></i> Web Solutions</li>
-            <li><i class="fas fa-plane"></i> Tours & Travel Services</li>
+            <li class="service-item software" data-service="software">
+                <i class="fas fa-laptop-code"></i> Software & Game Development
+            </li>
+            <li class="service-item networking" data-service="networking">
+                <i class="fas fa-network-wired"></i> Networking Services & Solutions
+            </li>
+            <li class="service-item web" data-service="web">
+                <i class="fas fa-globe"></i> Web Solutions
+            </li>
+            <li class="service-item travel" data-service="travel">
+                <i class="fas fa-plane"></i> Tours & Travel Services
+            </li>
         </ul>
+    
+        <!-- Service Details Container -->
+        <div id="service-details" class="hidden">
+            <h3 id="service-title"></h3>
+            <p id="service-description"></p>
+        </div>
     </section>
+    
 
     <!-- Contact Form -->
     <section class="contact">
@@ -285,6 +397,53 @@
 
     showNextMedia();
     setInterval(showNextMedia, 3000);
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const services = {
+        software: {
+            title: "Software & Game Development",
+            description: "We develop high-quality software and immersive games tailored to your needs.",
+            class: "software-details"
+        },
+        networking: {
+            title: "Networking Services & Solutions",
+            description: "We provide reliable networking solutions, ensuring secure connectivity.",
+            class: "networking-details"
+        },
+        web: {
+            title: "Web Solutions",
+            description: "We create responsive websites, optimize SEO, and develop e-commerce platforms.",
+            class: "web-details"
+        },
+        travel: {
+            title: "Tours & Travel Services",
+            description: "We offer exclusive travel packages, flight bookings, and tour planning.",
+            class: "travel-details"
+        }
+    };
+
+    const serviceItems = document.querySelectorAll(".service-item");
+    const serviceDetails = document.getElementById("service-details");
+    const serviceTitle = document.getElementById("service-title");
+    const serviceDescription = document.getElementById("service-description");
+
+    serviceItems.forEach(item => {
+        item.addEventListener("click", function () {
+            const serviceKey = this.getAttribute("data-service");
+            const service = services[serviceKey];
+
+            if (service) {
+                serviceTitle.textContent = service.title;
+                serviceDescription.textContent = service.description;
+
+                // Remove existing class and add new one for background color
+                serviceDetails.className = ""; 
+                serviceDetails.classList.add(service.class);
+
+                serviceDetails.classList.remove("hidden");
+            }
+        });
+    });
 });
     </script>
 </body>
