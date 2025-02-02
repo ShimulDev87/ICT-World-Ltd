@@ -3,279 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="ICT WORLD offers software development, networking, server solutions, and other IT services to enhance your business.">
-    <meta name="keywords" content="ICT, Software Development, Networking, Server Solutions, Web Development, Online Marketing, Technology">
-    <meta name="author" content="Your Company Name">
-    <meta name="robots" content="index, follow">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <title>ICT WORLD - IT Solutions</title>
+    <title>ICT World</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* General Body Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            background: #f4f4f4;
+            text-align: center;
         }
         header {
-            background-color: #333;
-            color: white;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            animation: fadeIn 2s ease-in;
-        }
-        header h1 {
-            margin: 0;
-        }
-
-        /* Typing Animation */
-        .typing {
-            font-size: 28px;
-            font-weight: bold;
-            display: inline-block;
-            width: 0;
-            white-space: nowrap;
-            border-right: 2px solid #fff;
-            overflow: hidden;
-            animation: typing 4s steps(40) 1s infinite, blinkCaret 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes blinkCaret {
-            50% {
-                border-color: transparent;
-            }
-        }
-
-        /* Language Toggle Button */
-        .lang-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #28a745;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .lang-toggle:hover {
-            background-color: #218838;
-        }
-
-        /* Smooth Transition for Sections */
-        section {
-            padding: 40px;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        nav {
-            text-align: center;
-            background-color: #444;
-            padding: 10px;
-            animation: fadeIn 2s forwards;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .cta-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .cta-btn:hover {
-            background-color: #218838;
-        }
-
-        .service-items, .portfolio-items, .team-members {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .service-item, .portfolio-item, .team-member {
-            background-color: #f4f4f4;
+            background: #333;
+            color: #fff;
             padding: 20px;
-            width: 250px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .logo {
+            width: 100px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .typing-animation {
+            font-size: 24px;
+            font-weight: bold;
+            animation: blinkTextCursor 0.7s steps(2) infinite;
+        }
+        @keyframes blinkTextCursor {
+            50% { border-right: 2px solid transparent; }
+        }
+        .owners, .team, .services, .contact {
+            padding: 40px;
+            background: #fff;
+            margin: 20px auto;
+            width: 80%;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .owners img, .team-member img {
+            width: 100px;
+            border-radius: 50%;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .theme-image {
+            width: 100%;
+            display: none;
+            transition: opacity 1s ease-in-out;
+        }
+        .team-member {
+            cursor: pointer;
+            padding: 10px;
             transition: transform 0.3s;
         }
-
-        .service-item:hover, .portfolio-item:hover, .team-member:hover {
-            transform: translateY(-10px);
+        .team-member:hover {
+            transform: scale(1.1);
         }
-
-        .service-item i {
-            font-size: 40px;
-            color: #28a745;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
+        .details {
+            display: none;
+            background: #ddd;
             padding: 10px;
-            text-align: center;
+            border-radius: 5px;
+        }
+        .details.show {
+            display: block;
+        }
+        .services ul {
+            list-style: none;
+            padding: 0;
+        }
+        .services li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            margin: auto;
+        }
+        .contact input, .contact textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .contact button {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .contact button:hover {
+            background: #555;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .service-items, .portfolio-items, .team-members {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
+        .logo {
+    width: 300px; /* Increased the size */
+    height: auto;
+    display: block;
+    margin: auto;
+    border-radius: 10px; /* Optional for smooth edges */
+
+    .theme-image {
+    width: 100%;
+    display: none;
+    transition: opacity 1s ease-in-out;
+}
+
+
+}
+.carousel video {
+    width: 100%;
+    display: none;
+}
+.owners {
+    padding: 40px;
+    background: #fff;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between; /* Distribute the elements evenly */
+    align-items: center; /* Vertically center the content */
+}
+
+.owner {
+    text-align: center;
+    width: 30%; /* Allocate space for each owner */
+}
+
+.owner img {
+    width: 100px; /* Control the image size */
+    border-radius: 50%;
+}
+
+.carousel {
+    position: relative;
+    width: 100%; /* Increase the width of the carousel */
+    height: 300px; /* Set a height for the video container */
+}
+
+.theme-image {
+    width: 100%;
+    height: 100%; /* Ensure videos fill the height of the carousel */
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+    display: none;
+    transition: opacity 1s ease-in-out;
+}
+
+
     </style>
 </head>
 <body>
-
+    <!-- Header Section -->
     <header>
-        <h1>Welcome to ICT WORLD</h1>
-        <p class="typing" id="motto"></p>
-        <button class="lang-toggle" onclick="toggleLanguage()">বাংলা</button>
+        <video autoplay loop muted class="logo">
+            <source src="Assets/Logo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h1 class="typing-animation">Welcome to our ICT World</h1>
+        <button id="language-toggle">বাংলা</button>
     </header>
 
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#team">Team</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <!-- Owner Profiles Section -->
+<section class="owners">
+    <div class="owner left">
+        <img src="Assets/reax.jpg" alt="Jahedul Islam">
+        <a href="#">Owner 1's Website</a>
+    </div>
+    <div class="carousel">
+        <video class="theme-image" autoplay loop muted>
+            <source src="Assets/Theme1.mp4" type="video/mp4">
+            <h1>Jahedul Islam</h1>
+            Your browser does not support the video tag.
+        </video>
+        <video class="theme-image" autoplay loop muted>
+            <source src="Assets/Theme2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="theme-image" autoplay loop muted>
+            <source src="Assets/Theme3.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="owner right">
+        <img src="Assets/reax.jpg" alt="Owner 2">
+        <a href="#">Owner 2's Website</a>
+    </div>
+</section>
+
+
+    <!-- Our Team Members -->
+    <section class="team">
+        <h2>Our Team Members</h2>
+        <div class="team-list">
+            <div class="team-member" onclick="toggleDetails(this)">
+                <img src="team1.jpg" alt="Team Member 1">
+                <p>Team Member 1</p>
+                <div class="details">Details about Member 1</div>
+            </div>
+            <div class="team-member" onclick="toggleDetails(this)">
+                <img src="team2.jpg" alt="Team Member 2">
+                <p>Team Member 2</p>
+                <div class="details">Details about Member 2</div>
+            </div>
+        </div>
+    </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
+    <section class="services">
         <h2>Our Services</h2>
-        <div class="service-items">
-            <div class="service-item">
-                <i class="fas fa-laptop-code"></i>
-                <h3>Software Development</h3>
-                <p>Custom software and game development services.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-network-wired"></i>
-                <h3>Networking & Server Solutions</h3>
-                <p>Efficient network setups, server management, and security services.</p>
-            </div>
-            <div class="service-item">
-                <i class="fas fa-desktop"></i>
-                <h3>Web Solutions</h3>
-                <p>Website design, development, and maintenance.</p>
-            </div>
-        </div>
+        <ul>
+            <li><i class="fas fa-laptop-code"></i> Software & Game Development</li>
+            <li><i class="fas fa-network-wired"></i> Networking Services & Solutions</li>
+            <li><i class="fas fa-globe"></i> Web Solutions</li>
+            <li><i class="fas fa-plane"></i> Tours & Travel Services</li>
+        </ul>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio">
-        <h2>Our Portfolio</h2>
-        <div class="portfolio-items">
-            <div class="portfolio-item">
-                <img src="project1.jpg" alt="Project 1">
-                <h3>Project 1</h3>
-                <p>Short description of the project.</p>
-            </div>
-            <div class="portfolio-item">
-                <img src="project2.jpg" alt="Project 2">
-                <h3>Project 2</h3>
-                <p>Short description of the project.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team">
-        <h2>Our Team</h2>
-        <div class="team-members">
-            <div class="team-member">
-                <img src="team1.jpg" alt="Team Member 1">
-                <h3>John Doe</h3>
-                <p>CEO</p>
-            </div>
-            <div class="team-member">
-                <img src="team2.jpg" alt="Team Member 2">
-                <h3>Jane Smith</h3>
-                <p>Lead Developer</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
+    <!-- Contact Form -->
+    <section class="contact">
         <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/mwkaybpg" method="POST">
+        <form>
             <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" placeholder="Message" required></textarea>
-            <button type="submit" class="cta-btn">Send Message</button>
+            <textarea name="message" placeholder="Message"></textarea>
+            <button type="submit">Send Message</button>
         </form>
     </section>
 
-    <footer>
-        <p>&copy; 2025 ICT WORLD. All rights reserved.</p>
-    </footer>
-
     <script>
-        // Typing Animation Content Toggle for Bangla and English
-        const englishContent = "Your one-stop IT Solutions provider for Software, Game Development, Networking, Web, and Marketing Services.";
-        const banglaContent = "আপনার জন্য সফটওয়্যার, নেটওয়ার্কিং, ওয়েব এবং মার্কেটিং সেবা প্রদানকারী একমাত্র প্রতিষ্ঠান।";
-
-        let isBangla = false;
-
-        document.getElementById('motto').textContent = englishContent;
-
-        function toggleLanguage() {
-            if (isBangla) {
-                document.getElementById('motto').textContent = englishContent;
-                document.querySelector('.lang-toggle').textContent = 'বাংলা';
+        // Typing Animation
+        const text = "Welcome to our ICT World";
+        let index = 0;
+        function typeEffect() {
+            document.querySelector(".typing-animation").textContent = text.slice(0, index++);
+            if (index <= text.length) {
+                setTimeout(typeEffect, 100);
             } else {
-                document.getElementById('motto').textContent = banglaContent;
-                document.querySelector('.lang-toggle').textContent = 'English';
+                setTimeout(() => { index = 0; typeEffect(); }, 2000);
             }
-            isBangla = !isBangla;
         }
-    </script>
+        typeEffect();
 
-    <!-- AOS (Animate On Scroll) Library -->
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
+        // Image Carousel Animation
+        let images = document.querySelectorAll(".theme-image");
+        let i = 0;
+        setInterval(() => {
+            images.forEach(img => img.style.display = "none");
+            images[i].style.display = "block";
+            i = (i + 1) % images.length;
+        }, 3000);
+
+        // Toggle Team Member Details
+        function toggleDetails(member) {
+            member.querySelector(".details").classList.toggle("show");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+    let mediaItems = document.querySelectorAll(".carousel .theme-image, .carousel video");
+    let index = 0;
+
+    function showNextMedia() {
+        mediaItems.forEach(item => item.style.display = "none");
+        mediaItems[index].style.display = "block";
+        index = (index + 1) % mediaItems.length;
+    }
+
+    showNextMedia();
+    setInterval(showNextMedia, 3000);
+});
     </script>
 </body>
 </html>
