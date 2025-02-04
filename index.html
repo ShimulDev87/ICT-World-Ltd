@@ -127,27 +127,23 @@
 .carousel video {
     width: 100%;
     display: none;
-}
-.owners {
-    padding: 40px;
-    background: #fff;
-    margin: 20px auto;
-    width: 80%;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between; /* Distribute the elements evenly */
-    align-items: center; /* Vertically center the content */
+}.video-section {
+    width: 100vw;  /* Full width */
+    height: 100vh; /* Full height */
+    position: relative;
+    overflow: hidden;
 }
 
-.owner {
-    text-align: center;
-    width: 30%; /* Allocate space for each owner */
+.theme-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures video fills the section */
+    display: none; /* Hide all videos initially */
 }
 
-.owner img {
-    width: 100px; /* Control the image size */
-    border-radius: 50%;
+/* Show the first video initially */
+.theme-video:first-child {
+    display: block;
 }
 
 .carousel {
@@ -258,8 +254,74 @@ ul {
 .travel-details {
     background: #e74c3c;
 }
+header {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center everything */
+    gap: 10px; /* Adds spacing between logo and time/date */
+}
 
+.logo {
+    width: 120px; /* Adjust this to make the logo smaller */
+    height: auto;
+}
+
+.datetime {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.typing-animation {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center logo, time, and date */
+    gap: 10px; /* Space between elements */
+}
+
+.logo {
+    width: 300px; /* Large logo */
+    height: auto;
+}
+
+.datetime {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Darker color for visibility */
+}
+
+.welcome-text {
+    font-size: 32px; /* Bigger text */
+    font-weight: bold;
+    margin-top: 20px; /* Space below time & date */
+    color: #007bff; /* Blue color for highlight */
+}
+
+#language-toggle {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
 
 
     </style>
@@ -267,39 +329,36 @@ ul {
 <body>
     <!-- Header Section -->
     <header>
-        <video autoplay loop muted class="logo">
-            <source src="Assets/Logo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <h1 class="typing-animation">Welcome to our ICT World</h1>
+        <div class="logo-container">
+            <video autoplay loop muted class="logo">
+                <source src="Assets/Logo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="datetime">
+                <p id="time">Loading time...</p>
+                <p id="date">Loading date...</p>
+            </div>
+        </div>
+        
+        <h1 class="welcome-text">Welcome to ICT World Ltd.</h1>
+        
         <button id="language-toggle">বাংলা</button>
     </header>
+    
 
-    <!-- Owner Profiles Section -->
-<section class="owners">
-    <div class="owner left">
-        <img src="Assets/reax.jpg" alt="Jahedul Islam">
-        <a href="#">Jahedul Islam's Website</a>
-    </div>
-    <div class="carousel">
-        <video class="theme-image" autoplay loop muted>
-            <source src="Assets/Theme1.mp4" type="video/mp4">
-            <h1>Jahedul Islam</h1>
-            Your browser does not support the video tag.
-        </video>
-        <video class="theme-image" autoplay loop muted>
-            <source src="Assets/Theme2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <video class="theme-image" autoplay loop muted>
-            <source src="Assets/Theme3.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="owner right">
-        <img src="Assets/reax.jpg" alt="Owner 2">
-        <a href="#">Jahedul Islam's Website</a>
-    </div>
+    
+    <video class="theme-video" autoplay loop muted>
+        <source src="Assets/Theme1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video class="theme-video" autoplay loop muted>
+        <source src="Assets/Theme2.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <video class="theme-video" autoplay loop muted>
+        <source src="Assets/Theme3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 </section>
 
 
@@ -445,6 +504,38 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let videos = document.querySelectorAll(".theme-video");
+    let index = 0;
+
+    function showNextVideo() {
+        videos.forEach(video => video.style.display = "none"); // Hide all videos
+        videos[index].style.display = "block"; // Show the current video
+        videos[index].play(); // Ensure it plays
+
+        index = (index + 1) % videos.length; // Move to the next video
+    }
+
+    showNextVideo();
+    setInterval(showNextVideo, 5000); // Switch video every 5 seconds
+});
+function updateDateTime() {
+        let now = new Date();
+
+        let timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        let timeString = now.toLocaleTimeString(undefined, timeOptions);
+
+        let dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        let dateString = now.toLocaleDateString(undefined, dateOptions);
+
+        document.getElementById("time").textContent = timeString;
+        document.getElementById("date").textContent = dateString;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
     </script>
 </body>
 </html>
