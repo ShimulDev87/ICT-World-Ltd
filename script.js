@@ -28,3 +28,26 @@ setInterval(updateDateTime, 1000);
 
 // Initial call to set the time immediately
 updateDateTime();
+document.addEventListener("DOMContentLoaded", function () {
+    let videos = [
+        document.getElementById("video1"),
+        document.getElementById("video2"),
+        document.getElementById("video3"),
+    ];
+
+    let currentIndex = 0;
+
+    function playNextVideo() {
+        if (currentIndex < videos.length - 1) {
+            setTimeout(() => {
+                videos[currentIndex].classList.add("hidden"); // Hide current video
+                currentIndex++; 
+                videos[currentIndex].classList.remove("hidden"); // Show next video
+                videos[currentIndex].play();
+                videos[currentIndex].onended = playNextVideo; // Play next after finish
+            }, 3000); // 3-second delay (Change to 5000 for 5 seconds)
+        }
+    }
+
+    videos[currentIndex].onended = playNextVideo; // Start sequence
+});

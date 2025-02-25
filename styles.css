@@ -302,3 +302,25 @@ footer {
         width: 80%;
     }
 }
+
+.about-content {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    gap: 20px; /* Add spacing between video and text */
+}
+
+.theme-video {
+    width: 40%; /* Custom width */
+    max-width: 400px; /* Set a max width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Adds rounded corners */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow effect */
+}
+
+.about-text {
+    width: 60%; /* Text takes the remaining space */
+}
+.hidden {
+    display: none;
+}
+
